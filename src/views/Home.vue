@@ -1,18 +1,29 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid">
+    <Twit :key="twit.id" v-for="twit in twits" :id="twit.id" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import { mapActions, mapState } from 'vuex';
+import Twit from '@/components/Twit';
 
 export default {
-  name: 'home',
   components: {
-    HelloWorld,
+    Twit
   },
-};
+  created() {
+    this.fetchTwits()
+  },
+  computed: {
+    ...mapState({
+      twits: state => state.twits.twits,
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchTwits: 'fetchTwits'
+    })
+  }
+}
 </script>
