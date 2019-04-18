@@ -7,20 +7,6 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 
-export default {
-  created() {
-    this.fetchTwits()
-  },
-  computed: {
-    ...mapState({
-      twits: state => state.twits.twits,
-    })
-  },
-  methods: {
-    ...mapActions({
-      fetchTwits: 'fetchTwits'
-    })
-  }
-}
+export default {}
 </script>
 

@@ -11,7 +11,7 @@ const getters = {
 };
 
 const mutations = {
-  addTwits (state, twits) {
+  addTwits(state, twits) {
     state.twits = twits;
   },
 };
