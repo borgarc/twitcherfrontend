@@ -1,12 +1,32 @@
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column">
+    <router-view name="header"/>
+    <router-view name="menu"/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
-export default {}
+export default {
+  created() {
+    this.fetchProfile().then(() => {
+      this.$router.push({ name: 'home' });
+    }).catch(() => {
+      this.$router.push({ name: 'login' });
+    });
+  },
+  methods: {
+    ...mapActions({
+      fetchProfile: 'fetchProfile',
+    }),
+  },
+};
 </script>
 
+<style lang="scss">
+#app {
+  height: 100vh;
+}
+</style>

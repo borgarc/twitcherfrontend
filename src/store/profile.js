@@ -2,14 +2,15 @@ import api from '@/communications/api';
 
 const state = {
   profile: null,
-}
+};
 
 const getters = {
+  getProfile: st => st.profile,
 };
 
 const mutations = {
-  setProfile(state, profile) {
-    state.profile = profile;
+  setProfile(st, prof) {
+    st.profile = prof;
   },
 };
 
@@ -19,21 +20,19 @@ const actions = {
       api.getProfile().then((response) => {
         commit('setProfile', response.data);
         resolve();
-      })
-      .catch((error) => {
+      }).catch((error) => {
         reject(error);
       });
     });
   },
   login({ dispatch }, payload) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       api.login(payload).then((response) => {
         localStorage.setItem('token', response.data.token);
         dispatch('fetchProfile').then(() => {
           resolve();
-        })
-      })
-      .catch((error) => {
+        });
+      }).catch((error) => {
         throw new Error(error);
       });
     });

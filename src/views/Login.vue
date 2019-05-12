@@ -20,14 +20,16 @@ export default {
   },
   methods: {
     ...mapActions({
-      login: 'login'
+      login: 'login',
     }),
     onLogin() {
       this.login({
         username: this.username,
-        password: this.password
-      })
-    }
-  }
-}
+        password: this.password,
+      }).then(() => {
+        this.$router.push({ name: 'home' });
+      });
+    },
+  },
+};
 </script>
