@@ -4,6 +4,7 @@ import Login from './views/Login.vue';
 import Home from './views/Home.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
+import NewTwit from './components/NewTwit.vue';
 
 Vue.use(Router);
 
@@ -15,6 +16,15 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/new',
+      name: 'new',
+      components: {
+        default: NewTwit,
+        header: Header,
+        menu: Menu,
+      },
     },
     {
       path: '/',

@@ -10,7 +10,11 @@
       </div>
     </div>
     <small>{{ twit.content }}</small>
-    <small>likes: {{ twit.liked_by.length }}</small>
+    <div class="d-flex justify-content-between">
+      <small><Icon icon="comment" /></small>
+      <small><Icon icon="retweet" /></small>
+      <small><Icon icon="heart" /> {{ twit.liked_by.length }}</small>
+    </div>
   </div>
 </template>
 
