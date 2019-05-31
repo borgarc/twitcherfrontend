@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import People from './views/People.vue';
 import Login from './views/Login.vue';
 import Home from './views/Home.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
-import NewTwit from './components/NewTwit.vue';
+import NewTwit from './views/NewTwit.vue';
+import Replies from './views/Replies.vue';
+import Reply from './views/NewReply.vue';
 
 Vue.use(Router);
 
@@ -13,15 +16,42 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/people',
+      name: 'people',
+      components: {
+        default: People,
+        header: Header,
+        menu: Menu,
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: Login,
     },
     {
-      path: '/new',
+      path: '/twits/new',
       name: 'new',
       components: {
         default: NewTwit,
+        header: Header,
+        menu: Menu,
+      },
+    },
+    {
+      path: '/twits/:twitID/replies',
+      name: 'replies',
+      components: {
+        default: Replies,
+        header: Header,
+        menu: Menu,
+      },
+    },
+    {
+      path: '/twits/:twitID/reply',
+      name: 'reply',
+      components: {
+        default: Reply,
         header: Header,
         menu: Menu,
       },

@@ -12,7 +12,9 @@
       <a class="nav-link" href="#"><small><Icon icon="users" /></small></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><small><Icon icon="user-plus" /></small></a>
+      <a class="nav-link" href="#">
+        <small><Icon icon="user-plus" @click="goToAddFollower"/></small>
+      </a>
     </li>
   </ul>
 </template>
@@ -26,6 +28,9 @@ export default {
     goToHome() {
       this.$router.push({ name: 'home' });
     },
+    goToAddFollower() {
+      this.$router.push({ name: 'people' });
+    },
   },
 };
 </script>
@@ -37,5 +42,9 @@ export default {
 
 small {
   color: black;
+}
+
+ul {
+  flex: 0 0 auto;
 }
 </style>

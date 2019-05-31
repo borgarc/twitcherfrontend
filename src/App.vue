@@ -11,9 +11,7 @@ import { mapActions } from 'vuex';
 
 export default {
   created() {
-    this.fetchProfile().then(() => {
-      this.$router.push({ name: 'home' });
-    }).catch(() => {
+    this.fetchProfile().catch(() => {
       this.$router.push({ name: 'login' });
     });
   },
