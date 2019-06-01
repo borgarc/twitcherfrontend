@@ -8,6 +8,8 @@ import {
   faCommentDots,
   faUsers,
   faUserPlus,
+  faPlus,
+  faMinus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
@@ -26,6 +28,8 @@ library.add(faHome);
 library.add(faCommentDots);
 library.add(faUsers);
 library.add(faUserPlus);
+library.add(faPlus);
+library.add(faMinus);
 
 Vue.component('Icon', FontAwesomeIcon);
 

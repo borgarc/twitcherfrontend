@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="d-flex flex-column">
+  <div v-if="isLoaded" id="app" class="d-flex flex-column">
     <router-view name="header"/>
     <router-view name="menu"/>
     <router-view/>
@@ -7,13 +7,21 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   created() {
     this.fetchProfile().catch(() => {
       this.$router.push({ name: 'login' });
     });
+  },
+  computed: {
+    ...mapGetters({
+      getProfile: 'getProfile',
+    }),
+    isLoaded() {
+      return this.getProfile || this.$route.name === 'login';
+    },
   },
   methods: {
     ...mapActions({

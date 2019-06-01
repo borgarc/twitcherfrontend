@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-12 px-3 py-2 mt-2">
+  <div class="card col-11 px-3 py-2 mt-2">
     <div class="d-flex pb-2">
       <div class="flex-grow-1">
         <small><strong>{{ reply.user.name }}</strong></small>

@@ -1,13 +1,22 @@
 <template>
   <div class="main-view container-fluid">
-    oihjoihjok
+    <Twit :id="twit.id"/>
+    <div class="d-flex justify-content-end flex-wrap">
+      <Reply :key="reply.id" v-for="reply in replies" :id="reply.id"/>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Twit from '@/components/Twit.vue';
+import Reply from '@/components/Reply.vue';
 
 export default {
+  components: {
+    Twit,
+    Reply,
+  },
   created() {
     this.fecthTwit(this.$route.params.twitID);
     this.fetchReplies(this.$route.params.twitID);
