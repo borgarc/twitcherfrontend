@@ -5,7 +5,8 @@ const state = {
 };
 
 const getters = {
-  getRepliesByTwit: st => twitID => st.replies.filter(element => element.twit === twitID),
+  getRepliesByTwit: st => twitID => st.replies.filter(reply => reply.twit === twitID),
+  getReplyByID: st => replyID => st.replies.find(reply => reply.id === replyID),
 };
 
 const mutations = {

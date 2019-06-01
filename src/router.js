@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import People from './views/People.vue';
 import Login from './views/Login.vue';
+import Following from './views/Following.vue';
 import Home from './views/Home.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
@@ -20,6 +21,15 @@ export default new Router({
       name: 'people',
       components: {
         default: People,
+        header: Header,
+        menu: Menu,
+      },
+    },
+    {
+      path: '/following',
+      name: 'following',
+      components: {
+        default: Following,
         header: Header,
         menu: Menu,
       },

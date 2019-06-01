@@ -1,6 +1,6 @@
 <template>
   <div class="main-view container-fluid">
-    <Follower :key="person.id" v-for="person in people" :id="person.id" add/>
+    <Follower :key="person.id" v-for="person in people" :id="person.id"/>
   </div>
 </template>
 
@@ -13,16 +13,16 @@ export default {
     Follower,
   },
   created() {
-    this.fetchPeople();
+    this.fetchFollowers();
   },
   computed: {
     ...mapGetters({
-      people: 'getPeopleToBeFriends',
+      people: 'getFollowedPeople',
     }),
   },
   methods: {
     ...mapActions({
-      fetchPeople: 'fetchPeople',
+      fetchFollowers: 'fetchFollowers',
     }),
   },
 };

@@ -1,21 +1,33 @@
+import _ from 'lodash';
 import api from '@/communications/api';
 
-const state = {
+const initialState = {
   profile: null,
   people: [],
 };
 
 const getters = {
-  getProfile: st => st.profile,
-  getPeople: st => st.people.filter(person => person.id !== st.profile.id),
+  getProfile: state => state.profile,
+  getFollowedPeople: state => state.people.filter(
+    person => state.profile.follows.some(p => p === person.id),
+  ),
+  getPeopleToBeFriends: (state) => {
+    const exceptions = _.union([state.profile.id], state.profile.follows);
+    return state.people.filter(person => !exceptions.some(exception => exception === person.id));
+  },
+  getPeopleByID: st => personID => st.people.find(person => person.id === personID),
+  getPeople: state => state.people,
 };
 
 const mutations = {
-  setProfile(st, prof) {
-    st.profile = prof;
+  setProfile(state, prof) {
+    state.profile = prof;
   },
-  setPeople(st, peop) {
-    st.people = peop;
+  setPeople(state, people) {
+    state.people = people;
+  },
+  setFollowers(state, follows) {
+    state.profile.follows = follows;
   },
 };
 
@@ -34,6 +46,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       api.getPeople().then((response) => {
         commit('setPeople', response.data);
+        resolve();
       }).catch(() => {
         reject();
       });
@@ -51,10 +64,42 @@ const actions = {
       });
     });
   },
+  addFollower({ commit, state }, followID) {
+    return new Promise((resolve, reject) => {
+      const data = { follows: [...state.profile.follows, followID] };
+      api.updateFollowers(state.profile.id, data).then((response) => {
+        commit('setFollowers', response.data.follows);
+        resolve(response.data);
+      }).catch(() => {
+        reject();
+      });
+    });
+  },
+  deleteFollower({ commit, state }, followID) {
+    return new Promise((resolve, reject) => {
+      const data = { follows: state.profile.follows.filter(p => p !== followID) };
+      api.updateFollowers(state.profile.id, data).then((response) => {
+        commit('setFollowers', response.data.follows);
+        resolve(response.data);
+      }).catch(() => {
+        reject();
+      });
+    });
+  },
+  fetchFollowers({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      api.getFollowers(state.profile.id).then((response) => {
+        commit('setPeople', response.data);
+        resolve(response.data);
+      }).catch(() => {
+        reject();
+      });
+    });
+  },
 };
 
 export default {
-  state,
+  state: initialState,
   getters,
   mutations,
   actions,

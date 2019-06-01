@@ -9,11 +9,13 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#"><small><Icon icon="users" /></small></a>
+      <a class="nav-link" href="#" @click="goToMyFollowings">
+        <small><Icon icon="users" /></small>
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">
-        <small><Icon icon="user-plus" @click="goToAddFollower"/></small>
+      <a class="nav-link" href="#" @click="goToAddFollower">
+        <small><Icon icon="user-plus"/></small>
       </a>
     </li>
   </ul>
@@ -30,6 +32,9 @@ export default {
     },
     goToAddFollower() {
       this.$router.push({ name: 'people' });
+    },
+    goToMyFollowings() {
+      this.$router.push({ name: 'following' });
     },
   },
 };
