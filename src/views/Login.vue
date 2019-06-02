@@ -44,7 +44,7 @@ export default {
       });
     },
     goToCreateUser() {
-      this.$router.push({ name: 'newuser' });
+      this.$router.push({ name: 'new-user' });
     },
   },
 };

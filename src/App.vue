@@ -1,5 +1,4 @@
 <template>
-
   <div v-if="isLoaded" id="app" class="d-flex flex-column">
     <router-view name="header"/>
     <router-view name="menu"/>
@@ -24,7 +23,9 @@ export default {
       getProfile: 'getProfile',
     }),
     isLoaded() {
-      return this.getProfile || this.$route.name === 'login';
+      const exceptions = ['login', 'new-user'];
+      console.log(this.$route.name in exceptions)
+      return this.getProfile || exceptions.some(route => route === this.$route.name);
     },
   },
   methods: {
