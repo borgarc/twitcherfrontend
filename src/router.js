@@ -7,6 +7,7 @@ import Home from './views/Home.vue';
 import Header from './components/Header.vue';
 import Menu from './components/Menu.vue';
 import NewTwit from './views/NewTwit.vue';
+import NewUser from './views/NewUser.vue';
 import Replies from './views/Replies.vue';
 import Reply from './views/NewReply.vue';
 
@@ -74,6 +75,11 @@ export default new Router({
         header: Header,
         menu: Menu,
       },
+    },
+    {
+      path: '/new-user',
+      name: 'newuser',
+      component: NewUser,
     },
     {
       path: '/',
