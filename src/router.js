@@ -77,8 +77,8 @@ export default new Router({
       },
     },
     {
-      path: '/new-user',
-      name: 'newuser',
+      path: '/new_user',
+      name: 'new-user',
       component: NewUser,
     },
     {
