@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Twit from '@/components/Twit.vue';
 
 export default {
@@ -13,12 +13,21 @@ export default {
     Twit,
   },
   created() {
-    this.fetchTwits();
+    this.fetchTwits(this.userID);
+  },
+  watch: {
+    '$route'() {
+      this.fetchTwits(this.userID);
+    },
   },
   computed: {
-    ...mapState({
-      twits: state => state.twits.twits,
+    ...mapGetters({
+      twits: 'getTwits',
+      profile: 'getProfile',
     }),
+    userID() {
+      return this.$route.params.userID || this.profile.id;
+    },
   },
   methods: {
     ...mapActions({

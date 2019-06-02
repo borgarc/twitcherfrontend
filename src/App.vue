@@ -11,7 +11,10 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   created() {
-    this.fetchProfile().catch(() => {
+    Promise.all([
+      this.fetchPeople(),
+      this.fetchProfile(),
+    ]).catch(() => {
       this.$router.push({ name: 'login' });
     });
   },
@@ -25,6 +28,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      fetchPeople: 'fetchPeople',
       fetchProfile: 'fetchProfile',
     }),
   },
