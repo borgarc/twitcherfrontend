@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-12 px-3 py-2 mt-2">
+  <div class="card col-12 px-3 py-2 mt-2" @click="goToUserHome">
     <div class="d-flex pb-2">
       <div class="flex-grow-1">
         <small><strong>{{ people.name }}</strong></small>
@@ -7,10 +7,10 @@
       </div>
     </div>
     <div class="d-flex justify-content-end">
-      <a class="nav-link active" href="#" v-if="add" @click="onAddFollower">
+      <a class="nav-link active" href="#" v-if="add" @click.stop="onAddFollower">
         <small><Icon icon="plus" /></small>
       </a>
-      <a class="nav-link active" href="#" v-else @click="onDeleteFollower">
+      <a class="nav-link active" href="#" v-else @click.stop="onDeleteFollower">
         <small><Icon icon="minus" /></small>
       </a>
     </div>
@@ -33,10 +33,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getPeopleByID: 'getPeopleByID',
+      getPersonByID: 'getPersonByID',
     }),
     people() {
-      return this.getPeopleByID(this.id);
+      return this.getPersonByID(this.id);
     },
   },
   methods: {
@@ -49,6 +49,9 @@ export default {
     },
     onDeleteFollower() {
       this.deleteFollower(this.id);
+    },
+    goToUserHome() {
+      this.$router.push({ name: 'user', params: { userID: this.id } });
     },
   },
 };

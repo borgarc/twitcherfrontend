@@ -6,6 +6,7 @@ const state = {
 };
 
 const getters = {
+  getTwits: st => st.twits,
   getTwitByID: st => id => st.twits.find(twit => twit.id === id),
 };
 
@@ -29,9 +30,9 @@ const actions = {
       });
     });
   },
-  fetchTwits({ commit }) {
+  fetchTwits({ commit }, userID) {
     return new Promise((resolve, reject) => {
-      api.getTwits().then((response) => {
+      api.getTwits(userID).then((response) => {
         commit('addTwits', response.data);
         resolve(response.data);
       }).catch(() => {

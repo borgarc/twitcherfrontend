@@ -15,7 +15,7 @@ const getters = {
     const exceptions = _.union([state.profile.id], state.profile.follows);
     return state.people.filter(person => !exceptions.some(exception => exception === person.id));
   },
-  getPeopleByID: st => personID => st.people.find(person => person.id === personID),
+  getPersonByID: st => personID => st.people.find(person => person.id === personID),
   getPeople: state => state.people,
 };
 

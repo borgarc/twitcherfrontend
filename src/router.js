@@ -67,6 +67,15 @@ export default new Router({
       },
     },
     {
+      path: '/users/:userID',
+      name: 'user',
+      components: {
+        default: Home,
+        header: Header,
+        menu: Menu,
+      },
+    },
+    {
       path: '/',
       name: 'home',
       components: {
