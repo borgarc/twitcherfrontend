@@ -4,6 +4,7 @@ import api from '@/communications/api';
 const initialState = {
   profile: null,
   people: [],
+  newUser: {},
 };
 
 const getters = {
@@ -29,9 +30,22 @@ const mutations = {
   setFollowers(state, follows) {
     state.profile.follows = follows;
   },
+  setNewUser(state, newUser) {
+    state.newUser = newUser;
+  },
 };
 
 const actions = {
+  addUser({ commit }, data) {
+    return new Promise((resolve, reject) => {
+      api.createUser(data).then((response) => {
+        commit('setNewUser', response.data);
+        resolve(response.data);
+      }).catch(() => {
+        reject();
+      });
+    });
+  },
   fetchProfile({ commit }) {
     return new Promise((resolve, reject) => {
       api.getProfile().then((response) => {

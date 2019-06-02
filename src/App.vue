@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="isLoaded" id="app" class="d-flex flex-column">
     <router-view name="header"/>
     <router-view name="menu"/>

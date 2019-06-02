@@ -14,9 +14,8 @@
       <a class="nav-link active" href="#" @click.stop="goToNewReply">
         <small><Icon icon="comment" /></small>
       </a>
-      <a class="nav-link active" href="#"><small><Icon icon="retweet" /></small></a>
       <a class="nav-link active" href="#">
-        <small><Icon icon="heart" />{{ twit.liked_by.length }}</small>
+        <small><Icon icon="heart" /> {{ twit.liked_by.length }}</small>
       </a>
     </div>
   </div>
