@@ -25,7 +25,7 @@ const post = (url, data) => {
 
 const createReply = data => post(`${API_URL}/replies/`, data);
 const createTwit = data => post(`${API_URL}/twits/`, data);
-const createUser = data => post(`${API_URL}/register/`, data);
+const createUser = data => axios.post(`${API_URL}/register/`, data);
 const getFollowers = userID => get(`${API_URL}/people/?followed_by=${userID}`);
 const getPeople = () => get(`${API_URL}/people/`);
 const getProfile = () => get(`${API_URL}/profile/`);

@@ -12,7 +12,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Password</span>
         </div>
-        <input type="text" class="form-control" placeholder="Password" aria-label="Password"
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password"
         aria-describedby="basic-addon1" v-model="password">
       </div>
       <button class="btn btn-dark" @click="onLogin">Log In</button>
